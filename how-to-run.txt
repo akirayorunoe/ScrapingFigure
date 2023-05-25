@@ -1,0 +1,73 @@
+Scrapy+Playwright
+
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt(nếu có)
+pip install scrapy
+pip install scrapy-playwright
+playwright install
+scrapy startproject [name]
+*pip freeze > requirements.txt để tạo requirements file
+
+Next, we will need to update our Scrapy projects settings to activate scrapy-playwright in the project:
+
+# settings.py
+
+DOWNLOAD_HANDLERS = {
+    "http": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
+    "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
+}
+
+TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
+
+Tạo spider template: scrapy genspider [tên spider] [domain]
+
+*Debug với: scrapy shell "https://japanfigure.vn/collections/all”
+*Debug inline: from scrapy.shell import inspect_response
+inspect_response(response, self)
+Dùng inspect_response trước chỗ cần log r nhập selector/xpath vào shell để trỏ đến giá trị cần tìm
+Run + tạo file: scrapy crawl [spider name] -O result.json
+
+scrapy-user-agents để rotate user-agents
+scrapy-rotating-proxies để rotate ip
+https://blog.devgenius.io/create-strong-flask-scrapy-postgresql-project-3ab6a3d45b56
+cài docker
+docker pull pickapp/tor-proxy
+
+Hiện tại folder Scraping là project python có
+-folder: figure
+-venv
+Trong folder figure:
+-docker-compose.yml
+-scrapy.cfg
+-folder: figure
+Trong folder figure lại chứa:
+__init__.py	helpers.py	middlewares.py	settings.py __pycache__	items.py	pipelines.py	spiders
+
+docker pull pickapp/tor-proxy
+chạy nền: docker-compose up -d (chú ý phải chạy Docker desktop trước)
+Tắt: docker-compose down
+kiểm tra IP  curl -x 0.0.0.0:9994 http://icanhazip.com/
+
+Để resume/pause 1 job: scrapy crawl <spider_name> -s JOBDIR=<job_directory>
+*Nếu dùng process: kill -SIGUSR1 <process_id> để pause/resume
+
+install dbeaver+postgresql
+pip install psycopg2-binary-> thao tác db từ scrapy
+
+REDIS
+-brew install redis
+-pip install scrapy-redis
+-start redis: brew services start redis
+-redis-cli: chạy cli
+	-flushall: để xoá toàn bộ queue
+	-LRANGE <KEY> <START> <END>: 
+	VD:LRANGE japan_figure:start_urls 0 -1
+-stop redis: brew services stop redis
+
+
+
+*Trong settings.py Với number đằng sau key: giá trị càng bé -> priority cao
+*Middleware: Intercepter của req và res
+*pipeline: xử lý dữ liệu trước khi ra kết quả
+https://platform-qa.unifimoney.net/sso-jack-henry?code=8nqllGrUTFlQ5E5ZpKIQ6R39n3VmPtvRvFgBOK3jjjF&state=7c2311ef02c296d58adc288646096301c2039c372e7de51b7ad203f104859cb24747045350d8c933edc208ae02176ae244d78866f148f1f8417b9336

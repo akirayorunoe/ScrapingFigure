@@ -1,0 +1,14 @@
+# Ignore venv folder
+venv/
+
+# Ignore compiled Python files
+*.pyc
+
+# Ignore log files
+*.log
+
+# Ignore Docker image and container data
+
+# Ignore scraped data files and images
+result.json
+
