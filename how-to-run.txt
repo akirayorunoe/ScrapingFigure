@@ -72,4 +72,3 @@ REDIS
 *Trong settings.py Với number đằng sau key: giá trị càng bé -> priority cao
 *Middleware: Intercepter của req và res
 *pipeline: xử lý dữ liệu trước khi ra kết quả
-https://platform-qa.unifimoney.net/sso-jack-henry?code=8nqllGrUTFlQ5E5ZpKIQ6R39n3VmPtvRvFgBOK3jjjF&state=7c2311ef02c296d58adc288646096301c2039c372e7de51b7ad203f104859cb24747045350d8c933edc208ae02176ae244d78866f148f1f8417b9336
