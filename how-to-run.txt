@@ -33,6 +33,8 @@ scrapy-rotating-proxies để rotate ip
 https://blog.devgenius.io/create-strong-flask-scrapy-postgresql-project-3ab6a3d45b56
 cài docker
 docker pull pickapp/tor-proxy
+Cài orbstack lightweight hơn docker desktop
+docker system prune : clean
 
 Hiện tại folder Scraping là project python có
 -folder: figure
